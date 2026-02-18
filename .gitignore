@@ -1,0 +1,48 @@
+# Compiled output
+out/
+dist/
+*.js
+*.js.map
+*.d.ts
+
+# Node modules
+node_modules/
+
+# VS Code
+.vscode/
+.vscode-test/
+*.vsix
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Environment
+.env
+.env.local
+
+# Build artifacts
+build/

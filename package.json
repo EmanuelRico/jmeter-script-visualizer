@@ -1,0 +1,179 @@
+{
+  "name": "jmeter-vscode-visualizer",
+  "displayName": "JMeter Script Visualizer",
+  "description": "Visual editor for Apache JMeter test plans with integrated test execution and results visualization",
+  "version": "0.1.1",
+  "publisher": "emanuelrico",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EmanuelRico/jmeter-script-visualizer"
+  },
+  "icon": "icon.png",
+  "license": "MIT",
+  "keywords": [
+    "jmeter",
+    "performance testing",
+    "load testing",
+    "test automation",
+    "jmx",
+    "visual editor",
+    "testing"
+  ],
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Testing",
+    "Visualization"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension/extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "jmeter.testPlanEditor",
+        "displayName": "JMeter Test Plan Editor",
+        "selector": [
+          {
+            "filenamePattern": "*.jmx"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "jmeter.openVisualEditor",
+        "title": "Open with JMeter Visual Editor",
+        "category": "JMeter"
+      },
+      {
+        "command": "jmeter.runTest",
+        "title": "Run Test",
+        "category": "JMeter",
+        "icon": "$(play)"
+      },
+      {
+        "command": "jmeter.stopTest",
+        "title": "Stop Test",
+        "category": "JMeter",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "jmeter.viewRecentResults",
+        "title": "View Recent Results",
+        "category": "JMeter",
+        "icon": "$(history)"
+      },
+      {
+        "command": "jmeter.viewResultsChart",
+        "title": "View Results Chart",
+        "category": "JMeter",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "jmeter.configureJMeterPath",
+        "title": "Configure JMeter Path",
+        "category": "JMeter"
+      },
+      {
+        "command": "jmeter.addThreadGroup",
+        "title": "Add Thread Group",
+        "category": "JMeter"
+      },
+      {
+        "command": "jmeter.addHTTPSampler",
+        "title": "Add HTTP Sampler",
+        "category": "JMeter"
+      },
+      {
+        "command": "jmeter.addRegexExtractor",
+        "title": "Add Regex Extractor",
+        "category": "JMeter"
+      },
+      {
+        "command": "jmeter.addAssertion",
+        "title": "Add Response Assertion",
+        "category": "JMeter"
+      },
+      {
+        "command": "jmeter.explainTestPlan",
+        "title": "Explain Test Plan",
+        "category": "JMeter"
+      },
+      {
+        "command": "jmeter.analyzeTestPlan",
+        "title": "Analyze Test Plan",
+        "category": "JMeter"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .jmx",
+          "command": "jmeter.openVisualEditor",
+          "group": "navigation"
+        },
+        {
+          "when": "resourceExtname == .jmx",
+          "command": "jmeter.runTest",
+          "group": "jmeter@1"
+        },
+        {
+          "when": "resourceExtname == .jtl",
+          "command": "jmeter.viewResultsChart",
+          "group": "navigation"
+        }
+      ],
+      "editor/title": [
+        {
+          "when": "resourceExtname == .jmx",
+          "command": "jmeter.runTest",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "jmeter.runTest",
+          "when": "resourceExtname == .jmx"
+        },
+        {
+          "command": "jmeter.stopTest"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "JMeter",
+      "properties": {
+        "jmeter.jmeterPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to JMeter executable (e.g., /usr/local/bin/jmeter)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js",
+    "test:roundtrip": "ts-node src/test-roundtrip.ts",
+    "demo": "ts-node src/demo.ts",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "@types/xml2js": "^0.4.14",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.45.0",
+    "typescript": "^5.1.0"
+  },
+  "dependencies": {
+    "xml2js": "^0.6.2",
+    "xmlbuilder2": "^3.1.1"
+  }
+}
